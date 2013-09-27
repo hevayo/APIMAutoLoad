@@ -54,6 +54,7 @@ function run_test(){
     eval $COMMAND
     tail -n 3 ~/tmp_results > ~/tail_tmp_results
     DATA= `head -n 1 ~/tail_tmp_results`
+    echo $DATA
     echo "$DATA" |grep -P '\d+ (?=/s AVG)' -o
     echo "$DATA" |grep -P '\d+ (?= Min)' -o
     echo "";
