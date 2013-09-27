@@ -52,8 +52,10 @@ function run_test(){
     echo "@ Users : $2  TPS : $3  TEST : $1 " 
     COMMAND="$JMETER_PATH -t scripts/$1 -p $JMETER_PROPERTIES -Jusers=$2 -Jduration=$TEST_EXECUTION_TIME -Jtput=$3 > ~/tmp_results"
     eval $COMMAND
-    tail -n 4 ~/tmp_results > ~/tail_tmp_results
-    head -n 2 ~/tail_tmp_results 
+    tail -n 3 ~/tmp_results > ~/tail_tmp_results
+    DATA= `head -n 1 ~/tail_tmp_results`
+    echo "$DATA" |grep -P '\d+ (?=/s AVG)' -o
+    echo "$DATA" |grep -P '\d+ (?= Min)' -o
     echo "";
     rm ~/tmp_results
     rm ~/tail_tmp_results
