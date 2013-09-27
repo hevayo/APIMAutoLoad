@@ -39,8 +39,11 @@ THREADS=(100 200 300 400 500 600 700 800 900)
 
 # Sleep the server to stabilize after each test
 # Better to put a value higher than connection time out or API Suspention
-SLEEP_TIME=40
-
+if [ -z "$2" ]; then
+    SLEEP_TIME=40
+else
+    SLEEP_TIME=$2
+fi
 
 # this function will run a test with the given arguments
 # run_test file_name threads throughput
