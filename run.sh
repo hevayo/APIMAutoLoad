@@ -24,7 +24,11 @@ JMETER_PATH='~/apache-jmeter-2.9/bin/jmeter -n '
 JMETER_PROPERTIES='jmeter.properties'
 
 # Time for each test to execute
-TEST_EXECUTION_TIME=300
+if [ -z "$1" ]; then
+    TEST_EXECUTION_TIME=300
+else
+    TEST_EXECUTION_TIME=$1
+fi
 
 # Set this a higher value than the servers could handle 
 # It is request per minute
